@@ -10,7 +10,7 @@ namespace JNEExcelReader
     {
         public void Execute(ProvinseList provinses)
         {
-            var fileName = @".\Kota.csv";
+            var fileName = @".\Kota.tsv";
             var KabupatenKotaNames = provinses.ProvinseLists.SelectMany(p => p.KotaList).Where(k => k.KotaType == KotaType.Kabupaten).SelectMany(k => k.KecamatanList).Select(k => String.Format("{0}\t{1}\t{2}", k.Kota.Province.Name, k.Kota.Name, k.Name));
             var KotaNames = provinses.ProvinseLists.SelectMany(p => p.KotaList).Where(k => k.KotaType == KotaType.Kota).Select(k => String.Format("{0}\t{1}\t{2}", k.Province.Name, k.Name, k.Name));
             KotaNames = KotaNames.Union(KabupatenKotaNames).OrderBy(k => k);

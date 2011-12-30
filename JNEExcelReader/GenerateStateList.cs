@@ -11,7 +11,7 @@ namespace JNEExcelReader
 
         public void Execute(ProvinseList provinses)
         {
-            var fileName = @".\propinsi.csv";
+            var fileName = @".\propinsi.tsv";
             var provinceNames = provinses.ProvinseLists.Select(p => p.Name);
 
             var sb = new StringBuilder();

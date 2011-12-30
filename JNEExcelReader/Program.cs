@@ -12,13 +12,13 @@ namespace JNEExcelReader
             var ProvinseList = new ProvinseList();
 
             var jp = new JNEJakartaParser();
-            jp.Parse(@"C:\JKT.xls", ProvinseList.ProvinseLists);
+            jp.Parse(@"Input\JKT.xls", ProvinseList.ProvinseLists);
 
             JNESurabayaParser p1 = new JNERegulerSurabayaParser();
-            p1.Parse(@"C:\REGULAR.xls", ProvinseList.ProvinseLists);
+            p1.Parse(@"Input\REGULAR.xls", ProvinseList.ProvinseLists);
 
             JNESurabayaParser p2 = new JNEOKESurabayaParser();
-            p2.Parse(@"C:\OKE.xls", ProvinseList.ProvinseLists);
+            p2.Parse(@"Input\OKE.xls", ProvinseList.ProvinseLists);
 
             FileStream stream1 = new FileStream("final.json", FileMode.OpenOrCreate);
             DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ProvinseList));
