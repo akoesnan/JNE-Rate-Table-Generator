@@ -16,7 +16,7 @@ namespace JNEExcelReader
 
         protected JNERateType RateType { get; set; }
 
-        public void Parse(string filePath, IList<Province> ProvinseList)
+        public void Parse(string filePath, IList<Province> ProvinceList)
         {
             FileStream stream = File.Open(filePath, FileMode.Open, FileAccess.Read);
             //...
@@ -34,27 +34,27 @@ namespace JNEExcelReader
             while (excelReader.Read())
             {
                 
-                var PropinsiName = excelReader.GetString(PropinsiColumnIndex);
+                var ProvinceName = excelReader.GetString(PropinsiColumnIndex);
                 var KotaMadyaOrKabupatenName = excelReader.GetString(KotamadyaOrKabupatenColumnIndex);
                 var KecamatanName = excelReader.GetString(KecamatanColumnIndex);
                 if (row >= 9)
                 {
                     int j = 0;
-                    if (!string.IsNullOrWhiteSpace(PropinsiName) && String.IsNullOrEmpty(KotaMadyaOrKabupatenName) &&
+                    if (!string.IsNullOrWhiteSpace(ProvinceName) && String.IsNullOrEmpty(KotaMadyaOrKabupatenName) &&
                         string.IsNullOrEmpty(KecamatanName))
                     {
                         if (
-                            !ProvinseList.Any(
-                                p => String.Equals(p.Name, PropinsiName, StringComparison.InvariantCultureIgnoreCase)))
+                            !ProvinceList.Any(
+                                p => String.Equals(p.Name, ProvinceName, StringComparison.InvariantCultureIgnoreCase)))
                         {
 
-                            ProvinseList.Add(new Province(PropinsiName));
+                            ProvinceList.Add(new Province(ProvinceName));
                         }
-                        var Propinsi = ProvinseList.First(
-                            p => String.Equals(p.Name, PropinsiName, StringComparison.InvariantCultureIgnoreCase));
+                        var Propinsi = ProvinceList.First(
+                            p => String.Equals(p.Name, ProvinceName, StringComparison.InvariantCultureIgnoreCase));
                         currentProvince = Propinsi;
                     }
-                    else if (string.IsNullOrWhiteSpace(PropinsiName) && !String.IsNullOrEmpty(KotaMadyaOrKabupatenName) &&
+                    else if (string.IsNullOrWhiteSpace(ProvinceName) && !String.IsNullOrEmpty(KotaMadyaOrKabupatenName) &&
                              string.IsNullOrEmpty(KecamatanName))
                     {
                         if (currentProvince != null)
@@ -79,7 +79,7 @@ namespace JNEExcelReader
                             throw new Exception("The current provinse should never be null");
                         }
                     }
-                    else if (string.IsNullOrWhiteSpace(PropinsiName) &&
+                    else if (string.IsNullOrWhiteSpace(ProvinceName) &&
                              String.IsNullOrEmpty(KotaMadyaOrKabupatenName) &&
                              !string.IsNullOrEmpty(KecamatanName))
                     {

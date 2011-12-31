@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CsvUtility.cs" />
     <Compile Include="GenerateRateList.cs" />
     <Compile Include="GenerateCityList.cs" />
     <Compile Include="GenerateStateList.cs" />

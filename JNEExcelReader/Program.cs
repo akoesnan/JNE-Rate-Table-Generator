@@ -9,19 +9,19 @@ namespace JNEExcelReader
     {
         static void Main(string[] args)
         {
-            var ProvinseList = new ProvinseList();
+            var ProvinseList = new ProvinceList();
 
             var jp = new JNEJakartaParser();
-            jp.Parse(@"Input\JKT.xls", ProvinseList.ProvinseLists);
+            jp.Parse(@"Input\JKT.xls", ProvinseList.Provinces);
 
             JNESurabayaParser p1 = new JNERegulerSurabayaParser();
-            p1.Parse(@"Input\REGULAR.xls", ProvinseList.ProvinseLists);
+            p1.Parse(@"Input\REGULAR.xls", ProvinseList.Provinces);
 
             JNESurabayaParser p2 = new JNEOKESurabayaParser();
-            p2.Parse(@"Input\OKE.xls", ProvinseList.ProvinseLists);
+            p2.Parse(@"Input\OKE.xls", ProvinseList.Provinces);
 
             FileStream stream1 = new FileStream("final.json", FileMode.OpenOrCreate);
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ProvinseList));
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(ProvinceList));
             ser.WriteObject(stream1, ProvinseList);
 
             var StateData = new GenerateStateList();

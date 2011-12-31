@@ -7,14 +7,14 @@ using System.Runtime.Serialization;
 namespace JNEExcelReader
 {
     [DataContract]
-    public class ProvinseList
+    public class ProvinceList
     {
         [DataMember]
-        public IList<Province> ProvinseLists { get; set; }
+        public IList<Province> Provinces { get; set; }
 
-        public ProvinseList()
+        public ProvinceList()
         {
-            this.ProvinseLists = new List<Province>();
+            this.Provinces = new List<Province>();
         }
     }
 }

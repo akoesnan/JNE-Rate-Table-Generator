@@ -31,16 +31,25 @@ namespace JNEExcelReader
         }
 
         private string GetDisplayName(string name, JNEExcelReader.Kota kota)
-        {            
-            return String.Format("{0}, {1}", name, kota.Name);            
+        {
+            name = name.Capitalize().Trim();
+            if (string.Equals(name, kota.Name, StringComparison.InvariantCultureIgnoreCase))
+            {
+                return name;
+            }
+            else
+            {
+                return String.Format("{0}, {1}", name, kota.Name);
+            }
         }
 
-        public bool Is (string name)
+        public bool Is(string name)
         {
-            if (String.Equals(this.RawName, name, StringComparison.InvariantCultureIgnoreCase) )
+            if (String.Equals(this.RawName, name, StringComparison.InvariantCultureIgnoreCase))
             {
                 return true;
-            } else if (String.Equals(this.Kota.Name, name, StringComparison.InvariantCultureIgnoreCase) )
+            }
+            else if (String.Equals(this.Kota.Name, name, StringComparison.InvariantCultureIgnoreCase))
             {
                 return true;
             }
